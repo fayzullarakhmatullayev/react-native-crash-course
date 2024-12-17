@@ -1,5 +1,5 @@
 import { Alert, Image, ScrollView, Text, View } from 'react-native';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { images } from '@/constants';
 import FormField from '@/components/FormField';
@@ -23,7 +23,7 @@ const SignIn = () => {
       const response = await signIn(form);
       console.log({ response });
 
-      // router.replace('/home');
+      router.replace('/home');
     } catch (error: any) {
       console.log(error);
       Alert.alert('Error', error.message);

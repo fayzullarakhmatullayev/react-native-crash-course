@@ -1,5 +1,4 @@
 import { Redirect, router } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
 import { Image, ScrollView, Text, View } from 'react-native';
 import '../global.css';
 
@@ -45,7 +44,6 @@ const App = () => {
           />
         </View>
       </ScrollView>
-      <StatusBar backgroundColor="#161622" style="light" />
     </SafeAreaView>
   );
 };
