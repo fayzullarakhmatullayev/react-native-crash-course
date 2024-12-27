@@ -85,4 +85,17 @@ export const getVideos = async () => {
     throw new Error(error);
   }
 };
+
+export const getLatestVideos = async () => {
+  try {
+    const videos = await database.listDocuments(databaseId, videoCollectionId, [
+      Query.orderDesc('$createdAt'),
+      Query.limit(7)
+    ]);
+    return videos.documents;
+  } catch (error: any) {
+    console.log(error);
+    throw new Error(error);
+  }
+};
 export { client, account };

@@ -5,14 +5,15 @@ import { images } from '@/constants';
 import SearchInput from '@/components/SearchInput';
 import Tranding from '@/components/Tranding';
 import EmptyState from '@/components/EmptyState';
-import { getVideos } from '@/lib/appwrite';
+import { getLatestVideos, getVideos } from '@/lib/appwrite';
 import { IVideo } from '@/types';
 import { useAppwrite } from '@/lib/useAppwrite';
 import VideoCard from '@/components/VideoCard';
 
 const Home = () => {
   const [refreshing, setRefreshing] = useState(false);
-  const { data, loading, refetch } = useAppwrite<IVideo[]>(getVideos);
+  const { data: videos, loading, refetch } = useAppwrite<IVideo[]>(getVideos);
+  const { data: latestVideos } = useAppwrite<IVideo[]>(getLatestVideos);
   const onRefresh = async () => {
     setRefreshing(true);
     await refetch();
@@ -21,7 +22,7 @@ const Home = () => {
   return (
     <SafeAreaView className="bg-primary h-full">
       <FlatList
-        data={data}
+        data={videos}
         keyExtractor={(item) => item.$id}
         renderItem={({ item }) => <VideoCard video={item} />}
         ListHeaderComponent={() => (
@@ -38,7 +39,7 @@ const Home = () => {
             <SearchInput handleChange={() => {}} value="" placeholder="Search for a video topic" />
             <View className="w-full flex-1 pt-5 pb-8">
               <Text className="text-gray-100 text-lg font-pregular mb-3">Latest videos</Text>
-              <Tranding posts={[{ $id: '1' }, { $id: '2' }, { $id: '3' }]} />
+              <Tranding posts={latestVideos!} />
             </View>
           </View>
         )}

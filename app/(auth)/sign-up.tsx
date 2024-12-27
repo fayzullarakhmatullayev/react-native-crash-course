@@ -24,7 +24,7 @@ const SignUp = () => {
       const response = await createUser(form);
       console.log({ response });
 
-      // router.replace('/home');
+      router.replace('/home');
     } catch (error: any) {
       console.log(error);
       Alert.alert('Error', error.message);
