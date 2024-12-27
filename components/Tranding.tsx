@@ -29,9 +29,8 @@ const TrandingItem = ({ activeItem, item }: { activeItem: any; item: IVideo }) =
           source={{ uri: item.video }}
           resizeMode={ResizeMode.CONTAIN}
           className="w-52 h-72 rounded-[35px] mt-3 bg-white/10"
-          useNativeControls
-          shouldPlay
-          onPlaybackStatusUpdate={({ isPlaying }: any) => !isPlaying && setPlay(false)}
+          useNativeControls={true}
+          shouldPlay={true}
         />
       ) : (
         <TouchableOpacity
